@@ -1,0 +1,57 @@
+scalar Date
+
+type Query {
+  appointments(startDate: Date, endDate: Date): [Appointment]!
+}
+
+type Mutation {
+  register(registerUser: RegisterUser_Input!): RegisterResponse!
+  login(username: String!, password: String!): LoginResponse!
+}
+
+input RegisterUser_Input {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  role: String
+}
+
+type RegisterResponse {
+  profile: Profile!
+}
+
+enum UserRole {
+  Professional
+  Client
+}
+
+type LoginResponse {
+  profile: Profile!
+  expires_in: Int!
+  access_token: String!
+  subscription: String!
+}
+
+type Profile {
+  id: String!
+  createdAt: Date!
+  updatedAt: Date!
+
+  inviteCode: String!
+  role: UserRole!
+}
+
+type Appointment {
+  id: String!
+  createdAt: Date!
+  updatedAt: Date!
+      
+  client: Profile!
+  clientId: String!
+  
+  address1: String!
+  postalCode: String!
+  date: Date!
+}
+	  

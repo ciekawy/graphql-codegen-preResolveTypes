@@ -1,0 +1,20 @@
+query ($startDate: Date, $endDate: Date) {
+  appointments(startDate: $startDate, endDate: $endDate) {
+    ...Appointment
+  }
+}
+
+fragment Client on Profile {
+    id
+    createdAt
+    updatedAt	    
+    role
+}
+
+fragment Appointment on Appointment {
+    id
+    client { ...Client }
+    address1
+    postalCode
+    date
+}

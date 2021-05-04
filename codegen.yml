@@ -1,0 +1,13 @@
+overwrite: true
+schema: ./schema.graphql
+documents: src/app/**/*.graphql
+config:
+  preResolveTypes: true
+generates:
+  ./src/app/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular
+    config:
+      preResolveTypes: true
